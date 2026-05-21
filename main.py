@@ -1,15 +1,32 @@
 import os
+from dotenv import load_dotenv
 
-from flask import Flask, send_file
+load_dotenv()
+KAGGLE_USERNAME = os.getenv("KAGGLE_USERNAME")
+KAGGLE_KEY = os.getenv("KAGGLE_KEY")
 
-app = Flask(__name__)
+from helpers.strategy.download.google_driver_downloader import GoogleDriverDownloader
+from helpers.strategy.download.kaggle_dowloader import KaggleDownloader
+from helpers.strategy.download.hugging_face_downloader import HuggingFaceDownloader
 
-@app.route("/")
-def index():
-    return send_file('src/index.html')
+# GoogleDriverDownloader(
+#     id="14vCUXklVCUN_rCPKYN7ys2tDJG72SNYw",
+#     path="/home/user/datacrawling/data/raw/2026-05-12/test_data",
+#     item_type="folder",
+#     quiet=False,
+# ).execute()
 
-def main():
-    app.run(port=int(os.environ.get('PORT', 80)))
 
-if __name__ == "__main__":
-    main()
+# KaggleDownloader(
+#     id="muratkokludataset/acoustic-extinguisher-fire-dataset",
+#     path="/home/user/datacrawling/data/raw/2026-05-12/test_data",
+#     unzip=True,
+# ).execute()
+
+
+HuggingFaceDownloader(
+    url="",
+    id="tmquan/sapnhap-bando-vn",
+    path="/home/user/datacrawling/data/raw/2026-05-12/sapnhap-bando-vn.parquet",
+    file_name="data/all.parquet",
+).execute()

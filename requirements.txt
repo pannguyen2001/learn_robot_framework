@@ -1,6 +1,15 @@
-# Dev environment
-pip
-autopep8
-
-# App
-flask
+ruff
+selenium
+pytest
+pandas
+openpyxl
+python_calamine
+pytz
+python-dotenv
+scrapy
+beautifulsoup4
+requests
+Crawlee
+loguru
+polars
+fastexcel
