@@ -1,24 +1,8 @@
+# Learn Robot framework python from start
+- Verion: 0.1.0
+- Created at: 2026-July-13
+- Note: https://yjpniq7uisce.jp.larksuite.com/docx/Mfw6dZu25o2vFuxkT6sjhuwMpie
+
+
 source /home/user/datacrawling/.venv/bin/activate
-
-# Data crawling
-- Public google driver -> Done
-- Private GG Driver
-- Kaggle dataset -> Done
-- Hugging Face dataset
-- Website -> craw
-- API
-- SQL
-
-
-- Crawl data using:
-    - Selenium
-    - Playwright
-    - Scrapy: https://www.scrapy.org/
-    - Beautyful Soup (BS4)
-    - request
-    - Crawlee: https://github.com/apify/crawlee-python - https://crawlee.dev/python/docs/quick-start
-
-- Crawl web:
-    - Dynamic web page
-    - Infiniti scrolling
-    - Dynamic table
+robot -A robot.args tests/ui/login.robot

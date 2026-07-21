@@ -14,3 +14,5 @@ data/
 storage/
 test_data/
 *.jsonl
+uv.lock
+reports

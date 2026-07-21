@@ -3,3 +3,12 @@ name = "data_crawling"
 version = "0.1.0"
 requires-python = ">=3.11"
 readme = "README.md"
+dependencies = [
+    "arrow>=1.4.0",
+    "openpyxl>=3.1.5",
+    "robotframework>=7.4.2",
+    "robotframework-browser[bb]>=20.0.0",
+    "robotframework-requests>=0.9.7",
+    "robotframework-robocop>=8.3.2",
+    "robotframework-testdoc>=0.7.0",
+]
