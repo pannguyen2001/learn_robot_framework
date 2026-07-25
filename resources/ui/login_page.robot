@@ -1,9 +1,11 @@
 *** Settings ***
+Variables         ../../resources/env_variables.py
 Resource         ../../locators/locators.robot
+Library    OperatingSystem
 Library    Browser
 
 *** Variables ***
-${LOGIN_URL}          https://datn-fe-sooty.vercel.app/login
+${LOGIN_URL}          ${BASE_URL}/login
 ${LOGIN_BUTTON}       role=button[name="Đăng nhập"]
 ${LOGOUT_BUTTON}      role=link[name="Đăng xuất"]
 
