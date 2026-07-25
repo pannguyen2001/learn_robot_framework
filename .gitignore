@@ -16,3 +16,4 @@ test_data/
 *.jsonl
 uv.lock
 reports
+.env

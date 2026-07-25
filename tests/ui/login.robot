@@ -11,3 +11,5 @@ User logs in with valid credentials
     Submit Credentials    test_user_01@gmail.com    123456789
     # Assert (Then)
     Dashboard Should Be Visible
+    # Tear down
+    Logout
