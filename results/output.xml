@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.7 on win32)" generated="2026-09-01T22:20:27.720980" rpa="false" schemaversion="5">
+<suite id="s1" name="Learn Robot Framework" source="D:\_Code\learn_robot_framework">
+<suite id="s1-s1" name="Src" source="D:\_Code\learn_robot_framework\src">
+<suite id="s1-s1-s1" name="Tests" source="D:\_Code\learn_robot_framework\src\tests">
+<suite id="s1-s1-s1-s1" name="Ui" source="D:\_Code\learn_robot_framework\src\tests\ui">
+<suite id="s1-s1-s1-s1-s1" name="Register" source="D:\_Code\learn_robot_framework\src\tests\ui\register.robot">
+<test id="s1-s1-s1-s1-s1-t1" name="Register New Student User" line="10">
+<kw name="Open Register Page" owner="register_page">
+<kw name="New Browser" owner="Browser">
+<msg time="2026-09-01T22:20:27.942638" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "D:\\_Code\\learn_robot_framework\\results\\browser\\traces\\temp\\4523807d-48ac-4237-a4eb-6857bf245e62"}</msg>
+<msg time="2026-09-01T22:20:27.944541" level="INFO">Starting Browser process D:\_Code\learn_robot_framework\.venv\Lib\site-packages\BrowserBatteries\bin\wrapper\index.js using at 127.0.0.1:58358</msg>
+<msg time="2026-09-01T22:20:29.562730" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"D:\\_Code\\learn_robot_framework\\results\\browser\\traces\\temp\\4523807d-48ac-4237-a4eb-6857bf245e62"}</msg>
+<arg>chromium</arg>
+<arg>headless=false</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2026-09-01T22:20:27.942053" elapsed="1.620948"/>
+</kw>
+<kw name="New Context" owner="Browser">
+<msg time="2026-09-01T22:20:29.564344" level="INFO">{
+  "acceptDownloads": true,
+  "bypassCSP": false,
+  "forcedColors": "none",
+  "ignoreHTTPSErrors": false,
+  "javaScriptEnabled": true,
+  "offline": false,
+  "reducedMotion": "no-preference",
+  "serviceWorkers": "allow",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  }
+}</msg>
+<msg time="2026-09-01T22:20:29.573205" level="INFO">Successfully created context. </msg>
+<msg time="2026-09-01T22:20:29.573435" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'ignoreHTTPSErrors': False, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'serviceWorkers': 'allow', 'viewport': {'height': 720, 'width': 1280}}</msg>
+<arg>viewport={'width': 1280, 'height': 720}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="PASS" start="2026-09-01T22:20:29.563247" elapsed="0.010530"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2026-09-01T22:20:30.252886" level="INFO">Successfully initialized new page object and opened url: https://datn-fe-sooty.vercel.app/signup</msg>
+<arg>${REGISTER_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-09-01T22:20:29.574079" elapsed="0.679074"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-09-01T22:20:30.353684" level="INFO">Waited for Element with selector xpath=//button[contains(text(),'Đăng kí')] at state visible</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.253322" elapsed="0.100605"/>
+</kw>
+<doc>Open register page.</doc>
+<status status="PASS" start="2026-09-01T22:20:27.941407" elapsed="2.412668"/>
+</kw>
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2026-09-01T22:20:30.354717" level="INFO">${TODAY} = 2026-09-0122-20-30</msg>
+<var>${TODAY}</var>
+<arg>result_format=%Y-%m-%d%H-%M-%S</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.354373" elapsed="0.000563"/>
+</kw>
+<variable name="${STUDENT_FULL_NAME}">
+<msg time="2026-09-01T22:20:30.355490" level="INFO">${STUDENT_FULL_NAME} = auto_ui_test_student_2026-09-0122-20-30</msg>
+<var>auto_ui_test_student_${TODAY}</var>
+<status status="PASS" start="2026-09-01T22:20:30.355297" elapsed="0.000316"/>
+</variable>
+<variable name="${STUDENT_EMAIL}">
+<msg time="2026-09-01T22:20:30.356039" level="INFO">${STUDENT_EMAIL} = auto_ui_test_student_2026-09-0122-20-30@test.com</msg>
+<var>auto_ui_test_student_${TODAY}@test.com</var>
+<status status="PASS" start="2026-09-01T22:20:30.355872" elapsed="0.000407"/>
+</variable>
+<variable name="${PASSWORD}">
+<msg time="2026-09-01T22:20:30.356723" level="INFO">${PASSWORD} = 123456789</msg>
+<var>123456789</var>
+<status status="PASS" start="2026-09-01T22:20:30.356562" elapsed="0.000491"/>
+</variable>
+<kw name="Register New User" owner="register_page">
+<kw name="Fill Register Form" owner="register_page">
+<kw name="Check Checkbox" owner="Browser">
+<arg>css=#${role}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Checks the checkbox or selects radio button found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.358880" elapsed="0.044133"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.403599" level="INFO">Fills the text 'auto_ui_test_student_2026-09-0122-20-30' in the given field.</msg>
+<arg>css=#full_name</arg>
+<arg>${full_name}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.403192" elapsed="0.011455"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.415239" level="INFO">Fills the text '2000-01-01' in the given field.</msg>
+<arg>css=#date_of_birth</arg>
+<arg>2000-01-01</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.414841" elapsed="0.007449"/>
+</kw>
+<kw name="Check Checkbox" owner="Browser">
+<arg>css=#nam</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Checks the checkbox or selects radio button found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.422486" elapsed="0.042057"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.465424" level="INFO">Fills the text 'auto_ui_test_address' in the given field.</msg>
+<arg>css=#address</arg>
+<arg>auto_ui_test_address</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.464825" elapsed="0.006623"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.472082" level="INFO">Fills the text 'auto_ui_test_student_2026-09-0122-20-30@test.com' in the given field.</msg>
+<arg>css=#email</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.471626" elapsed="0.013572"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.485782" level="INFO">Fills the text '0123456789' in the given field.</msg>
+<arg>css=#phone_number</arg>
+<arg>0123456789</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.485386" elapsed="0.008573"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.494755" level="INFO">Fills the text '123456789' in the given field.</msg>
+<arg>css=#password</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.494166" elapsed="0.009548"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:30.504427" level="INFO">Fills the text '123456789' in the given field.</msg>
+<arg>css=#confirmPassword</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.503909" elapsed="0.009864"/>
+</kw>
+<arg>${role}</arg>
+<arg>${full_name}</arg>
+<arg>${email}</arg>
+<arg>${password}</arg>
+<doc>Fill register form with given email and password.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.358561" elapsed="0.155447"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-09-01T22:20:30.514587" level="INFO">Clicks the element 'xpath=//button[contains(text(),'Đăng kí')]'.</msg>
+<arg>${REGISTER_BUTTON}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.514142" elapsed="0.036471"/>
+</kw>
+<if>
+<branch type="IF" condition="$role == &quot;student&quot;">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-09-01T22:20:31.900095" level="INFO">Waited for Element with selector css=#parent_name at state visible</msg>
+<arg>css=#parent_name</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.551145" elapsed="1.349423"/>
+</kw>
+<kw name="Get Url" owner="Browser">
+<arg>ends</arg>
+<arg>completeInfoStudent</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.900919" elapsed="0.003347"/>
+</kw>
+<kw name="Fill Parent Info" owner="register_page">
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2026-09-01T22:20:31.905441" level="INFO">${TODAY} = 2026-09-0122-20-31</msg>
+<var>${TODAY}</var>
+<arg>result_format=%Y-%m-%d%H-%M-%S</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.905027" elapsed="0.000571"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:31.906457" level="INFO">Fills the text 'auto_ui_test_parent2026-09-0122-20-31' in the given field.</msg>
+<arg>css=#parent_name</arg>
+<arg>auto_ui_test_parent${TODAY}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.905789" elapsed="0.008715"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:31.915137" level="INFO">Fills the text '1234567890' in the given field.</msg>
+<arg>css=#parent_phone_number</arg>
+<arg>1234567890</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.914699" elapsed="0.007999"/>
+</kw>
+<doc>Fill parent info with given email and password.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.904582" elapsed="0.018370"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-09-01T22:20:31.923518" level="INFO">Clicks the element 'xpath=//button[contains(text(),'Hoàn thành')]'.</msg>
+<arg>${COMPLETE_BUTTON}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.923110" elapsed="0.044620"/>
+</kw>
+<status status="PASS" start="2026-09-01T22:20:30.550834" elapsed="1.417061"/>
+</branch>
+<status status="PASS" start="2026-09-01T22:20:30.550800" elapsed="1.417177"/>
+</if>
+<arg>student</arg>
+<arg>${STUDENT_FULL_NAME}</arg>
+<arg>${STUDENT_EMAIL}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Register new user with given email and password.</doc>
+<status status="PASS" start="2026-09-01T22:20:30.358036" elapsed="1.609995"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-09-01T22:20:33.313142" level="INFO">Waited for Element with selector role=button[name="Đăng nhập"] at state visible</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-09-01T22:20:31.968380" elapsed="1.345032"/>
+</kw>
+<kw name="Submit Credentials" owner="login_page">
+<kw name="Input Textbox" owner="locators">
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-09-01T22:20:33.315163" level="INFO">Fills the text 'auto_ui_test_student_2026-09-0122-20-30@test.com' in the given field.</msg>
+<arg>role=textbox[name=${name}]</arg>
+<arg>${value}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.314716" elapsed="0.005807"/>
+</kw>
+<arg>Email</arg>
+<arg>${email}</arg>
+<doc>Fill textbox value.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.314424" elapsed="0.006228"/>
+</kw>
+<kw name="Input Secret" owner="locators">
+<kw name="Fill Secret" owner="Browser">
+<arg>role=textbox[name="${name}"]</arg>
+<arg>$value</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Fills the given ``secret`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.321088" elapsed="0.010085"/>
+</kw>
+<arg>Mật khẩu</arg>
+<arg>${password}</arg>
+<doc>Input paswword.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.320789" elapsed="0.010532"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-09-01T22:20:33.331986" level="INFO">Clicks the element 'role=button[name="Đăng nhập"]'.</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.331441" elapsed="0.032691"/>
+</kw>
+<arg>${STUDENT_EMAIL}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Login to the page.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.313983" elapsed="0.050296"/>
+</kw>
+<kw name="Dashboard Should Be Visible" owner="login_page">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-09-01T22:20:34.732105" level="INFO">Waited for Element with selector role=link[name="Đăng xuất"] at state visible</msg>
+<arg>${LOGOUT_BUTTON}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.364808" elapsed="1.367716"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-09-01T22:20:34.750601" level="INFO">Text: ['Đăng xuất']</msg>
+<arg>${LOGOUT_BUTTON}</arg>
+<arg>==</arg>
+<arg>Đăng xuất</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:34.732856" elapsed="0.018069"/>
+</kw>
+<doc>Verify that in Dashboard page.</doc>
+<status status="PASS" start="2026-09-01T22:20:33.364525" elapsed="1.386519"/>
+</kw>
+<kw name="Logout" owner="login_page">
+<kw name="Click" owner="Browser">
+<msg time="2026-09-01T22:20:34.752000" level="INFO">Clicks the element 'role=link[name="Đăng xuất"]'.</msg>
+<arg>${LOGOUT_BUTTON}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:34.751644" elapsed="0.036773"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-09-01T22:20:35.630097" level="INFO">Waited for Element with selector role=button[name="Đăng nhập"] at state visible</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<arg>visible</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-09-01T22:20:34.788607" elapsed="0.842149"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2026-09-01T22:20:35.643441" level="INFO">Text: ['Đăng nhập']</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<arg>==</arg>
+<arg>Đăng nhập</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2026-09-01T22:20:35.631187" elapsed="0.012957"/>
+</kw>
+<doc>Logout page.</doc>
+<status status="PASS" start="2026-09-01T22:20:34.751347" elapsed="0.893218"/>
+</kw>
+<msg time="2026-09-01T22:20:35.657567" level="INFO">Switching context to context=0d1dc276-91f5-431a-8102-81cebef82c54 in CURRENT</msg>
+<msg time="2026-09-01T22:20:35.661230" level="INFO">Successfully changed active context: context=0d1dc276-91f5-431a-8102-81cebef82c54</msg>
+<msg time="2026-09-01T22:20:35.673256" level="INFO">Successfully closed Context</msg>
+<doc>Register new student user.</doc>
+<status status="PASS" start="2026-09-01T22:20:27.938559" elapsed="7.706384"/>
+</test>
+<kw name="Close Browser" owner="Browser" type="TEARDOWN">
+<msg time="2026-09-01T22:20:35.821827" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-09-01T22:20:35.674258" elapsed="0.148079"/>
+</kw>
+<doc>This is a test suite for register functionality.</doc>
+<status status="PASS" start="2026-09-01T22:20:27.761930" elapsed="8.060602"/>
+</suite>
+<status status="PASS" start="2026-09-01T22:20:27.755777" elapsed="8.092978"/>
+</suite>
+<status status="PASS" start="2026-09-01T22:20:27.752980" elapsed="8.098614"/>
+</suite>
+<status status="PASS" start="2026-09-01T22:20:27.743365" elapsed="8.121012"/>
+</suite>
+<status status="PASS" start="2026-09-01T22:20:27.724232" elapsed="8.143237"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Learn Robot Framework" id="s1" pass="1" fail="0" skip="0">Learn Robot Framework</stat>
+<stat name="Src" id="s1-s1" pass="1" fail="0" skip="0">Learn Robot Framework.Src</stat>
+<stat name="Tests" id="s1-s1-s1" pass="1" fail="0" skip="0">Learn Robot Framework.Src.Tests</stat>
+<stat name="Ui" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Learn Robot Framework.Src.Tests.Ui</stat>
+<stat name="Register" id="s1-s1-s1-s1-s1" pass="1" fail="0" skip="0">Learn Robot Framework.Src.Tests.Ui.Register</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
