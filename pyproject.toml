@@ -1,5 +1,5 @@
 [project]
-name = "data_crawling"
+name = "learn_robot_framework"
 version = "0.1.0"
 requires-python = ">=3.11"
 readme = "README.md"
@@ -12,4 +12,5 @@ dependencies = [
     "robotframework-requests>=0.9.7",
     "robotframework-robocop>=8.3.2",
     "robotframework-testdoc>=0.7.0",
+    "ruff>=0.16.4",
 ]
