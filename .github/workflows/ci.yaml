@@ -23,6 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           # Install additional dependencies if needed
           pip install -r requirements.txt
+      
+      - name: Initialize Robot Framework Browser
+        run: |
+          rfbrowser init
 
       - name: Run Robot Framework tests
         env:
