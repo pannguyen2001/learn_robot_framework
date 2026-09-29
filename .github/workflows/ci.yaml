@@ -38,37 +38,43 @@ jobs:
           [ -n "$USERS_JSON" ] || { echo "USERS_JSON missing"; exit 1; }
 
       - name: Run Robot Framework tests
-        run: |
-          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
-            robot --outputdir results --exclude skip src/tests/
-
-      - name: Run Robot Framework tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERS_JSON: ${{ secrets.USERS_JSON }}
           WORK_TOKEN: ${{ secrets.GIT_TOKEN }}
           TZ: Asia/Ho_Chi_Minh
         run: |
-          if ! robot --variable HEADLESS:True --outputdir results --exclude skip src/tests/; then
-              echo "Robot Framework tests failed. Rerunning failed tests..."
-              if [ -f results/output.xml ]; then
-                  robot --variable HEADLESS:True --rerunfailed results/output.xml --outputdir results_rerun src/tests/ || true
-                  if [ -f results_rerun/output.xml ]; then
-                      rebot --output results/output.xml --log results/log.html --report results/report.html --merge results/output.xml results_rerun/output.xml
-                  else
-                      echo "No output.xml file found from rerun. Skipping merge."
-                  fi
-              else
-                  echo "No output.xml file found. Cannot rerun failed tests."
-              fi
+          run_robot() {
+            xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
+              robot --variable HEADLESS:True "$@"
+          }
+
+          rc=0
+          run_robot --outputdir results --exclude skip src/tests/ || rc=$?
+
+          if [ $rc -ne 0 ] && [ -f results/output.xml ]; then
+            echo "Tests failed. Rerunning failed tests..."
+            rc=0
+            run_robot --rerunfailed results/output.xml \
+              --outputdir results_rerun --exclude skip src/tests/ || true
+
+            if [ -f results_rerun/output.xml ]; then
+              # rebot's exit code reflects the merged result (after rerun)
+              rebot --output results/output.xml --log results/log.html \
+                --report results/report.html \
+                --merge results/output.xml results_rerun/output.xml || rc=$?
+            else
+              echo "No rerun output found; keeping original failure."
+              rc=1
+            fi
           fi
 
-          echo "Script execution completed"
-        continue-on-error: false
+          exit $rc
 
       - name: Upload artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          path: ./results
           name: robot-test-results
+          path: ./results
           retention-days: 3
