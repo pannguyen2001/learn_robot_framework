@@ -11,7 +11,7 @@ ${LOGIN_URL}            ${BASE_URL}/login
 ${LOGIN_BUTTON}         role=button[name="Đăng nhập"]
 ${LOGOUT_BUTTON}        role=link[name="Đăng xuất"]
 ${MANAGEMENT_BUTTON}    xpath=//a[contains(text(),'Quản lí')]
-${HEADLESS}    ${False}
+# ${HEADLESS}    ${False}
 
 
 *** Keywords ***
@@ -22,7 +22,9 @@ Email Input
 
 Open Login Page
     [Documentation]    Open login page.
-    New Browser    chromium    headless=${HEADLESS}    
+    ${ci}=    Get Environment Variable    CI    default=false
+    ${headless}=    Evaluate    '${ci}'.lower() == 'true' or '${HEADLESS}'.lower() == 'true'
+    New Browser    chromium    headless=${headless}   
     New Context    viewport={'width': 1280, 'height': 720}    tracing=True
     New Page       ${LOGIN_URL}
     ${email}=      Email Input
