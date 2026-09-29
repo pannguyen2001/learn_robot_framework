@@ -27,7 +27,7 @@ jobs:
       
       - name: Initialize Robot Framework Browser
         run: |
-          run: rfbrowser init chromium --with-deps
+          rfbrowser init chromium --with-deps
       
       - name: Check test environment
         env:
