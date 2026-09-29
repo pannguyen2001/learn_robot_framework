@@ -7,7 +7,8 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    environment: BASE_URL
 
     steps:
       - name: Checkout repository
@@ -26,7 +27,15 @@ jobs:
       
       - name: Initialize Robot Framework Browser
         run: |
-          rfbrowser init
+          run: rfbrowser init chromium --with-deps
+      
+      - name: Check test environment
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USERS_JSON: ${{ secrets.USERS_JSON }}
+        run: |
+          [ -n "$BASE_URL" ] || { echo "BASE_URL missing"; exit 1; }
+          [ -n "$USERS_JSON" ] || { echo "USERS_JSON missing"; exit 1; }
 
       - name: Run Robot Framework tests
         env:
@@ -34,12 +43,11 @@ jobs:
           USERS_JSON: ${{ secrets.USERS_JSON }}
           WORK_TOKEN: ${{ secrets.GIT_TOKEN }}
           TZ: Asia/Ho_Chi_Minh
-          env:
         run: |
-          if ! robot --outputdir results --exclude skip src/tests/; then
+          if ! robot --variable HEADLESS:True --outputdir results --exclude skip src/tests/; then
               echo "Robot Framework tests failed. Rerunning failed tests..."
               if [ -f results/output.xml ]; then
-                  robot --rerunfailed results/output.xml --outputdir results_rerun src/tests/ || true
+                  robot --variable HEADLESS:True --rerunfailed results/output.xml --outputdir results_rerun src/tests/ || true
                   if [ -f results_rerun/output.xml ]; then
                       rebot --output results/output.xml --log results/log.html --report results/report.html --merge results/output.xml results_rerun/output.xml
                   else
@@ -51,7 +59,7 @@ jobs:
           fi
 
           echo "Script execution completed"
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
