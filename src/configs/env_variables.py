@@ -1,17 +1,20 @@
 import json
 import os
 from pathlib import Path
+import dotenv
+
+dotenv.load_dotenv()
 
 
-BASE_URL = os.getenv("BASE_URL", "")
+BASE_URL = os.getenv("BASE_URL")
 
 USERS_JSON = os.getenv("USERS_JSON")
 
 if USERS_JSON:
-    USERS = json.loads(USERS_JSON)
+    USER_ACCOUNTS = json.loads(USERS_JSON)
 else:
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]
     USERS_FILE = PROJECT_ROOT / "src" / "data" / "users.json"
 
     with USERS_FILE.open(encoding="utf-8") as file:
-        USERS = json.load(file)
+        USER_ACCOUNTS = json.load(file)
