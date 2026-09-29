@@ -27,6 +27,14 @@ jobs:
       - name: Initialize Robot Framework Browser
         run: |
           rfbrowser init
+      
+      - name: Check test environment
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USERS_JSON: ${{ secrets.USERS_JSON }}
+        run: |
+          echo "BASE_URL configured: $([ -n "$BASE_URL" ] && echo true || echo false)"
+          echo "USERS_JSON configured: $([ -n "$USERS_JSON" ] && echo true || echo false)"
 
       - name: Run Robot Framework tests
         env:
@@ -34,7 +42,6 @@ jobs:
           USERS_JSON: ${{ secrets.USERS_JSON }}
           WORK_TOKEN: ${{ secrets.GIT_TOKEN }}
           TZ: Asia/Ho_Chi_Minh
-          env:
         run: |
           if ! robot --outputdir results --exclude skip src/tests/; then
               echo "Robot Framework tests failed. Rerunning failed tests..."
