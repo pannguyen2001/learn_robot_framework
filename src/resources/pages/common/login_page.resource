@@ -11,6 +11,7 @@ ${LOGIN_URL}            ${BASE_URL}/login
 ${LOGIN_BUTTON}         role=button[name="Đăng nhập"]
 ${LOGOUT_BUTTON}        role=link[name="Đăng xuất"]
 ${MANAGEMENT_BUTTON}    xpath=//a[contains(text(),'Quản lí')]
+${HEADLESS}    ${False}
 
 
 *** Keywords ***
@@ -21,8 +22,8 @@ Email Input
 
 Open Login Page
     [Documentation]    Open login page.
-    New Browser    chromium    headless=false
-    New Context    viewport={'width': 1280, 'height': 720}
+    New Browser    chromium    headless=${HEADLESS}    
+    New Context    viewport={'width': 1280, 'height': 720}    tracing=True
     New Page       ${LOGIN_URL}
     ${email}=      Email Input
     Wait For Elements State    ${email}    visible
