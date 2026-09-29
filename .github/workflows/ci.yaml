@@ -38,6 +38,11 @@ jobs:
           [ -n "$USERS_JSON" ] || { echo "USERS_JSON missing"; exit 1; }
 
       - name: Run Robot Framework tests
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" \
+            robot --outputdir results --exclude skip src/tests/
+
+      - name: Run Robot Framework tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERS_JSON: ${{ secrets.USERS_JSON }}
