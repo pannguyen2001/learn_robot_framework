@@ -7,7 +7,8 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    environment: BASE_URL
 
     steps:
       - name: Checkout repository
@@ -26,15 +27,15 @@ jobs:
       
       - name: Initialize Robot Framework Browser
         run: |
-          rfbrowser init
+          rfbrowser init --with-deps
       
       - name: Check test environment
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERS_JSON: ${{ secrets.USERS_JSON }}
         run: |
-          echo "BASE_URL configured: $([ -n "$BASE_URL" ] && echo true || echo false)"
-          echo "USERS_JSON configured: $([ -n "$USERS_JSON" ] && echo true || echo false)"
+          [ -n "$BASE_URL" ] || { echo "BASE_URL missing"; exit 1; }
+          [ -n "$USERS_JSON" ] || { echo "USERS_JSON missing"; exit 1; }
 
       - name: Run Robot Framework tests
         env:
@@ -58,7 +59,7 @@ jobs:
           fi
 
           echo "Script execution completed"
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
